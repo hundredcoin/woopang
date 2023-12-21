@@ -112,7 +112,7 @@
                         class="nav-link rounded-0 py-3 text-center fw-bold"
                         id="detailInfo3" data-bs-toggle="list" href="#detailInfo03"
                         role="tab" aria-controls="detailInfo03" style="width: 250px">
-                    QnA 및 문의사항</a></li>
+                    한줄 평가</a></li>
             </ul>
             <!-- tab Caller -->
 
@@ -159,15 +159,17 @@
     %>
 
     <script>
+
         document.getElementById("detailInfo3").addEventListener("click", boardNumData);
 
+        var contextPath = '<%= request.getContextPath() %>'
+        console.log("contextPath : " + contextPath);
         function boardNumData() {
             urlData = window.location.href;
             let url = new URL(urlData);
             let goods_id = url.searchParams.get("goods_id");
 
             console.log("goods_id : " + goods_id);
-            console.log(${contextPath});
 
             // div를 클릭했을 때의 이벤트 핸들러
             console.log('html클릭함');
@@ -175,7 +177,7 @@
             // Ajax를 사용하여 서버에 데이터 요청
             $.ajax({
                 type: "GET",
-                url: "/todo/list", //  URL을 지정
+                url: contextPath + "/todo/list", //  URL을 지정
                 data: {"goods_id": goods_id},
                 dataType: "HTML",
                 success: function (data) {
@@ -206,7 +208,7 @@
             // Ajax를 사용하여 서버에 데이터 요청
             $.ajax({
                 type: "POST",
-                url: "/todo/list", //  URL을 지정
+                url: contextPath + "/todo/list", //  URL을 지정
                 dataType: "JSON",
                 success: function (data) {
                     console.log("data : "+ data);
@@ -219,8 +221,6 @@
             });
         }
 
-
-
         function viewread(event) {
             // div를 클릭했을 때의 이벤트 핸들러
             console.log('viewread 클릭함');
@@ -229,7 +229,7 @@
             // Ajax를 사용하여 서버에 데이터 요청
             $.ajax({
                 type: "GET",
-                url: "/todo/read?tno=" + tno, //  URL을 지정
+                url: contextPath + "/todo/read?tno=" + tno, //  URL을 지정
                 dataType: "html",
                 success: function (data) {
                     let htmlLocation = document.getElementById("detailInfo03");
@@ -254,7 +254,7 @@
                 formData.append('page', clickedPage);
                 // fetch는 JavaScript에서 제공하는 네트워크 요청을 간단하게 만들기 위한 API입니다.
                 // fetch 함수는 Promise를 반환하며, 네트워크 요청을 만들고 응답을 처리하는 데 사용됩니다.
-                fetch(`/todo/list`, {
+                fetch(`${contextPath}/todo/list`, {
                     method: 'POST',
                     body: formData
                 })
@@ -317,9 +317,9 @@
                 dueDateCell.textContent = dto.dueDate;
                 row.appendChild(dueDateCell);
                 //확인여부
-                let finishedCell = document.createElement("td");
-                finishedCell.textContent = dto.finished;
-                row.appendChild(finishedCell);
+                // let finishedCell = document.createElement("td");
+                // finishedCell.textContent = dto.finished;
+                // row.appendChild(finishedCell);
 
                 boardData.appendChild(row);
                 //<======게시판 목록 부분======>
@@ -367,32 +367,45 @@
                 boardDataNum.appendChild(li); // boardDataNum에 다음 페이지 링크를 추가
             }
         }
-
         function register(event) {
             console.log("register 진입");
+            console.log("contextPath : " + contextPath);
+
             $.ajax({
                 type: "POST",
-                url: "/todo/register",
+                url:  contextPath + "/todo/register",
                 dataType: "html",
                 success: function (data) {
                     console.log("register 로딩 성공");
                     detailInfo03.innerHTML = data;
+                            console.log("등록 작동")
+                    const registForm = document.getElementById("registForm")
+                    console.log("registForm :" + registForm);
+                    document.getElementById("regist").addEventListener("click", function (e) {
+                        console.log("등록 작동")
+                        e.preventDefault()
+                        e.stopPropagation()
+                        registForm.action =  contextPath + "/todo/register"
+                        registForm.method = "post"
+
+                        registForm.submit()
+
+                    }, false);
                 },
                 error: function e(data, textStatus) {
                     console.error("오류발생!");
                     alert("로그인 후 등록해주세요!");
-                    window.location.assign("/member/login");
+                    window.location.assign(contextPath + "/member/login");
                 }
             })
         }
-
         function modify(event) {
             console.log("modify 진입");
             let dto = event.target.getAttribute('value');
             console.log("tno : " + dto);
             $.ajax({
                 type: "post",
-                url: "/todo/modify?tno=" + dto,
+                url: contextPath + "/todo/modify?tno=" + dto,
                 dataType: "html",
                 success: function (data) {
                     console.log("성공");
@@ -403,7 +416,7 @@
                         console.log("등록 작동")
                         e.preventDefault()
                         e.stopPropagation()
-                        formObj.action = "/todo/modify"
+                        formObj.action = contextPath + "/todo/modify"
                         formObj.method = "post"
 
                         formObj.submit()
@@ -413,8 +426,8 @@
 
                         e.preventDefault()
                         e.stopPropagation()
-
-                        formObj.action = `/todo/remove?tno=` + dto;
+                        console.log("contextPath : "+ contextPath);
+                        formObj.action = contextPath + "/todo/remove?tno=" + dto;
                         formObj.method = "post"
 
                         formObj.submit()
@@ -432,7 +445,7 @@
             $.ajax({
                 type: "post",
                 async: true,
-                url: "/cart/addGoodsInCart",
+                url: contextPath + "/cart/addGoodsInCart",
                 data: {goods_id: goods_id},
                 success: function (data, textStatus) {
                     if (data.trim() == 'add_success') {
@@ -486,7 +499,7 @@
                 document.body.appendChild(formObj);
 
                 formObj.method = "post";
-                formObj.action = "/order/orderEachGoods";
+                formObj.action = contextPath + "/order/orderEachGoods";
                 formObj.submit();
             }
         }
