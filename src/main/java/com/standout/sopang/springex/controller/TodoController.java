@@ -54,7 +54,7 @@ public class TodoController {
         memberDTO = (MemberDTO) session.getAttribute("memberInfo");
         log.info("memberDTO : " + memberDTO.toString());
         String member_id = memberDTO.getMember_id();
-
+        String contextPath = request.getContextPath();
         if (member_id == null) {
             log.info("로그인 정보 없음");
             return "noId";
@@ -90,11 +90,10 @@ public class TodoController {
 
 
     @PostMapping("/remove")
-    public String remove(Long tno, TodoDTO todoDTO) {
+    public String remove(Long tno, TodoDTO todoDTO, HttpServletRequest request) {
 
         log.info("-------------remove------------------");
         log.info("tno: " + tno);
-
         todoService.remove(tno);
 
         return "redirect:/goods/goodsDetail?goods_id=" + todoDTO.getGoods_id_t_shopping_goods();
@@ -117,7 +116,7 @@ public class TodoController {
             log.info("todoDTO : " + todoDTO.getWriter());
             log.info("member_id : " + member_id);
         }
-        if (!member_id.equals(todoDTO.getWriter())) {
+        if (member_id != null && todoDTO.getWriter() != null && !member_id.equals(todoDTO.getWriter())) {
             log.info("작성자가 아님");
             return "noWriter";
         }

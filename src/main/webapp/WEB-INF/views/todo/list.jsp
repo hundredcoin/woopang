@@ -79,10 +79,10 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        Featured
+                        한줄평가
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">한줄평가</h5>
+<%--                        <h5 class="card-title">한줄평가</h5>--%>
                         <table class="table">
                             <thead>
                             <tr>
@@ -91,7 +91,7 @@
                                 <th scope="col">글 내용</th>
                                 <th scope="col">작성자</th>
                                 <th scope="col">등록일자</th>
-                                <th scope="col">답변여부</th>
+<%--                                <th scope="col">답변여부</th>--%>
                             </tr>
                             </thead>
                             <tbody id="boardData">
@@ -107,7 +107,7 @@
                                     <td><c:out value="${dto.content}"/></td>
                                     <td><c:out value="${dto.writer}"/></td>
                                     <td><c:out value="${dto.dueDate}"/></td>
-                                    <td><c:out value="${dto.finished}"/></td>
+<%--                                    <td><c:out value="${dto.finished}"/></td>--%>
                                 </tr>
                             </c:forEach>
 
@@ -116,56 +116,56 @@
                         </table>
 
                         </table>
-                        <button id="register" name="register">register</button>
+                        <button id="register" class="btn btn-primary" name="register">등록하기</button>
 
 
                         <div class="float-end">
                             <ul class="pagination flex-wrap" id="boardDataNum">
-                                <c:if test="${pageResponseDTO.prev}">
-                                    <li class="page-item">
-                                        <a class="page-link" data-num="${pageResponseDTO.start -1}">Previous</a>
-                                    </li>
-                                </c:if>
+<%--                                <c:if test="${pageResponseDTO.prev}">--%>
+<%--                                    <li class="page-item">--%>
+<%--                                        <a class="page-link" data-num="${pageResponseDTO.start -1}">Previous</a>--%>
+<%--                                    </li>--%>
+<%--                                </c:if>--%>
 
-                                <c:forEach begin="${pageResponseDTO.start}" end="${pageResponseDTO.end}" var="num">
-                                    <li class="page-item ${pageResponseDTO.page == num? "active":""} ">
-                                        <a class="page-link" data-num="${num}">${num}</a></li>
-                                </c:forEach>
+<%--                                <c:forEach begin="${pageResponseDTO.start}" end="${pageResponseDTO.end}" var="num">--%>
+<%--                                    <li class="page-item ${pageResponseDTO.page == num? "active":""} ">--%>
+<%--                                        <a class="page-link" data-num="${num}">${num}</a></li>--%>
+<%--                                </c:forEach>--%>
 
-                                <c:if test="${pageResponseDTO.next}">
-                                    <li class="page-item">
-                                        <a class="page-link" data-num="${pageResponseDTO.end + 1}">Next</a>
-                                    </li>
-                                </c:if>
+<%--                                <c:if test="${pageResponseDTO.next}">--%>
+<%--                                    <li class="page-item">--%>
+<%--                                        <a class="page-link" data-num="${pageResponseDTO.end + 1}">Next</a>--%>
+<%--                                    </li>--%>
+<%--                                </c:if>--%>
                             </ul>
                         </div>
-                    <script>
-                            document.querySelector(".pagination").addEventListener("click", function (e) {
-                                e.preventDefault()
-                                e.stopPropagation()
+<%--                    <script>--%>
+<%--                            document.querySelector(".pagination").addEventListener("click", function (e) {--%>
+<%--                                e.preventDefault()--%>
+<%--                                e.stopPropagation()--%>
 
-                                const target = e.target
+<%--                                const target = e.target--%>
 
-                                if (target.tagName !== 'A') {
-                                    return
-                                }
-                                const num = target.getAttribute("data-num")
+<%--                                if (target.tagName !== 'A') {--%>
+<%--                                    return--%>
+<%--                                }--%>
+<%--                                const num = target.getAttribute("data-num")--%>
 
-                                const formObj = document.querySelector("form")
+<%--                                const formObj = document.querySelector("form")--%>
 
-                                formObj.innerHTML += `<input type='hidden' name='page' value='\${num}'>`
+<%--                                formObj.innerHTML += `<input type='hidden' name='page' value='\${num}'>`--%>
 
-                                formObj.submit();
+<%--                                formObj.submit();--%>
 
-                            }, false)
-                            document.querySelector(".clearBtn").addEventListener("click", function (e) {
-                                e.preventDefault()
-                                e.stopPropagation()
+<%--                            }, false)--%>
+<%--                            document.querySelector(".clearBtn").addEventListener("click", function (e) {--%>
+<%--                                e.preventDefault()--%>
+<%--                                e.stopPropagation()--%>
 
-                                self.location = '/todo/list'
+<%--                                self.location = '/todo/list'--%>
 
-                            }, false)
-                        </script>
+<%--                            }, false)--%>
+<%--                        </script>--%>
                     </div>
                 </div>
             </div>

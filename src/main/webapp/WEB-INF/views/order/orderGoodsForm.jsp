@@ -9,7 +9,7 @@
 
 </head>
 <form id="active" name="order_info" method="post" accept-charset="UTF-8"
-      action="/order/orderResult" >
+      action="${contextPath}/order/orderResult" >
 
     <div class="container">
         <div class="row ms-5 ps-5">

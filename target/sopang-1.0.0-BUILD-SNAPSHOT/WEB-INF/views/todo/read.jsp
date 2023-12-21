@@ -22,26 +22,26 @@
 <div class="container-fluid">
     <div class="row">
         <!-- 기존의 <h1>Header</h1> -->
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                <a class="nav-link" href="#">Features</a>
-                                <a class="nav-link" href="#">Pricing</a>
-                                <a class="nav-link disabled">Disabled</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
+<%--        <div class="row">--%>
+<%--            <div class="col">--%>
+<%--                <nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
+<%--                    <div class="container-fluid">--%>
+<%--                        <a class="navbar-brand" href="#">Navbar</a>--%>
+<%--                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--                            <span class="navbar-toggler-icon"></span>--%>
+<%--                        </button>--%>
+<%--                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">--%>
+<%--                            <div class="navbar-nav">--%>
+<%--                                <a class="nav-link active" aria-current="page" href="#">Home</a>--%>
+<%--                                <a class="nav-link" href="#">Features</a>--%>
+<%--                                <a class="nav-link" href="#">Pricing</a>--%>
+<%--                                <a class="nav-link disabled">Disabled</a>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </nav>--%>
+<%--            </div>--%>
+<%--        </div>--%>
         <!-- header end -->
         <!-- 기존의 <h1>Header</h1>끝 -->
 
@@ -49,7 +49,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        Featured
+                        한줄평가 상세보기
                     </div>
                     <div class="card-body">
 <%--                        <div class="input-group mb-3">--%>
@@ -69,13 +69,13 @@
                                    value='<c:out value="${dto.content}"></c:out>' readonly>
                         </div>
 
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">작성일자</span>
-                            <input type="datetime-local" name="dueDate" class="form-control"
-                                   value='<c:out value="${dto.dueDate}"></c:out>' readonly>
-                            <P class="form-control"><c:out value="${formattedDate}"/></P>
+<%--                        <div class="input-group mb-3">--%>
+<%--                            <span class="input-group-text">작성일자</span>--%>
+<%--                            <input type="datetime-local" name="dueDate" class="form-control"--%>
+<%--                                   value='<c:out value="${dto.dueDate}"></c:out>' readonly>--%>
+<%--                            <P class="form-control"><c:out value="${formattedDate}"/></P>--%>
 
-                        </div>
+<%--                        </div>--%>
 
                         <div class="input-group mb-3">
                             <span class="input-group-text">글쓴이</span>
@@ -84,17 +84,17 @@
 
                         </div>
 
-                        <div class="form-check">
-                            <label class="form-check-label" >
-                                Finished &nbsp;
-                            </label>
-                            <input class="form-check-input" type="checkbox" name="finished" ${dto.finished?"checked":""} disabled >
-                        </div>
+<%--                        <div class="form-check">--%>
+<%--                            <label class="form-check-label" >--%>
+<%--                                Finished &nbsp;--%>
+<%--                            </label>--%>
+<%--                            <input class="form-check-input" type="checkbox" name="finished" ${dto.finished?"checked":""} disabled >--%>
+<%--                        </div>--%>
 
                         <div class="my-4">
                             <div class="float-end">
-                                <button class="btn btn-primary" id="modify" name="modify" value="${dto.tno}">Modify</button>
-                                <button type="button" class="btn btn-secondary" onclick="boardNumData()">List</button>
+                                <button class="btn btn-primary" id="modify" name="modify" value="${dto.tno}">수정하기</button>
+                                <button type="button" class="btn btn-secondary" onclick="boardNumData()">목록으로</button>
                             </div>
                         </div>
 
